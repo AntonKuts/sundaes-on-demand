@@ -7,6 +7,7 @@ function App() {
   return (
     <div className="App">
       <Options optionType="scoops" />
+      <Options optionType="toppings" />
       <SummaryForm />
     </div>
   );

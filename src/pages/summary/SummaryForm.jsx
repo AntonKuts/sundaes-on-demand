@@ -5,7 +5,7 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
 
 
-export const SummaryForm =()=> {
+export const SummaryForm = () => {
 
     const [isCheckboxCheck, setIsCheckboxCheck] = useState(false);
 
