@@ -7,9 +7,6 @@ export default function ScoopOptions({ name, imagePath }) {
   const { updateItemCount } = useOrderDetails();
   const handleChange=(e)=> updateItemCount(name, parseInt(e.target.value),'scoops');
 
-
-
-
   return (
     <Col xs={12} sm={6} md={4} lg={3} style={{ textAlign: "center" }}>
       <img
