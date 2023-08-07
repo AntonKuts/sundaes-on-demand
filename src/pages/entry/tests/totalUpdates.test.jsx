@@ -1,6 +1,7 @@
 import { render, screen } from "../../../test-utils/testing-library-utils";
 import userEvent from "@testing-library/user-event";
 import Options from "../Options";
+import OrderEntry from "../OrderEntry";
  
 // scoops tests
 test("subtotal scoops starts at 0", async () => {
@@ -75,3 +76,55 @@ test("update scoop subtotal when toppings change", async () => {
   await user.click(MAndMstopping);
   expect(scoopsSubtotal).toHaveTextContent("1.50");
 });
+
+describe('grand total', () => {
+
+  test('grand total starts at $0.00', ()=> {
+    render(<OrderEntry />);
+    const grandTotal = screen.getByText("Grant total: $", { exact: false });
+    expect(grandTotal).toHaveTextContent("0.00");
+  });
+
+  test('grand total updates properly if scoop is added first', async ()=>{
+    const user = userEvent.setup();
+    render(<OrderEntry />);
+    const vanillaInput = await screen.findByRole("spinbutton", {
+      name: "Vanilla",
+    });
+    await user.clear(vanillaInput);
+    await user.type(vanillaInput, "1");
+    const grandTotal = screen.getByText("Grant total: $", { exact: false });
+    expect(grandTotal).toHaveTextContent("2.00");
+  });
+
+  test('grand total updates properly if topping is added first', async ()=>{
+    const user = userEvent.setup();
+    render(<OrderEntry />);
+    const MAndMstopping = await screen.findByRole("checkbox", {
+      name: "M&Ms",
+    });
+    await user.click(MAndMstopping);
+    const grandTotal = screen.getByText("Grant total: $", { exact: false });
+    expect(grandTotal).toHaveTextContent("1.50");
+  });
+
+  test('grand total updates properly if item is removed', async ()=>{
+    const user = userEvent.setup();
+    render(<OrderEntry />);
+    const vanillaInput = await screen.findByRole("spinbutton", {
+      name: "Vanilla",
+    });
+    await user.clear(vanillaInput);
+    await user.type(vanillaInput, "1");
+    await user.type(vanillaInput, "0");
+
+    const MAndMstopping = await screen.findByRole("checkbox", {
+      name: "M&Ms",
+    });
+    await user.click(MAndMstopping);
+    await user.click(MAndMstopping);
+   
+    const grandTotal = screen.getByText("Grant total: $", { exact: false });
+    expect(grandTotal).toHaveTextContent("0");
+  });
+})
