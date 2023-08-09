@@ -4,8 +4,7 @@ import Button from "react-bootstrap/Button";
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
 
-
-export const SummaryForm = () => {
+export const SummaryForm = ({setOrderPhase}) => {
 
     const [isCheckboxCheck, setIsCheckboxCheck] = useState(false);
 
@@ -15,7 +14,7 @@ export const SummaryForm = () => {
               No ice cream will actually be delivered
           </Popover.Body>
         </Popover>
-      );
+    );
 
     const checkboxLabel = (
         <p>
@@ -24,10 +23,9 @@ export const SummaryForm = () => {
                 <span style={{ color: "blue" }}>
                     Terms and Conditions
                 </span>
-            </OverlayTrigger>
+           </OverlayTrigger>
         </p>
     );
-    const buttonTest = "Confirm order";
 
     return (
         <Form>
@@ -40,8 +38,12 @@ export const SummaryForm = () => {
                     label={checkboxLabel}
                 />
             </Form.Group>
-            <Button variant="primary" type="submit" name='confirmButton' disabled={!isCheckboxCheck}>
-                {buttonTest}
+            <Button 
+                variant="primary" name='confirmButton'
+                disabled={!isCheckboxCheck}
+                onClick={() => setOrderPhase("completed")}
+            >
+                Confirm order
             </Button>
         </Form>
     );

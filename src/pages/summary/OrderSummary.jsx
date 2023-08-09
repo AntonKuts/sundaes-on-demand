@@ -1,11 +1,12 @@
 import React from 'react';
-import SummaryForm from './SummaryForm';
+import { SummaryForm } from './SummaryForm';
 import { useOrderDetails } from '../../contexts/OrderDetails';
 import { formatCurrency } from '../../utilities';
 
-export default function OrderSummery() {
+export const OrderSummery = ({ setOrderPhase }) => {
 
     const { totals, optionCounts } = useOrderDetails();
+    const totalNumber = totals.scoops + totals.toppings;
 
     const scoopArray = Object.entries(optionCounts.scoops);
     const scoopList = scoopArray.map(([key, value]) => (
@@ -28,7 +29,8 @@ export default function OrderSummery() {
             <ul>{scoopList}</ul>
             <h2>Toppings: {formatCurrency(totals.toppings)}</h2>
             <ul>{toppingList}</ul>
-            <SummaryForm />
+            <h2> Total: {formatCurrency(totalNumber)} </h2>
+            <SummaryForm setOrderPhase={setOrderPhase}/>
         </div>
     )
 
