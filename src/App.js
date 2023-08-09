@@ -11,8 +11,6 @@ import OrderDetailsProvaider from "./contexts/OrderDetails";
 function App() {
   const [orderPhase, setOrderPhase] = useState("inProgress");
 
-  console.log("orderPhase -- ", orderPhase);
-
   let CorrentComponent = OrderEntry;
   if (orderPhase === "review") CorrentComponent = OrderSummery;
   if (orderPhase === "completed") CorrentComponent = OrderConfirmation;

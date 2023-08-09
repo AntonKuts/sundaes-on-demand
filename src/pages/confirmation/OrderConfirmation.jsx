@@ -22,11 +22,9 @@ export const OrderConfirmation = ({ setOrderPhase }) => {
         resetOrder();
     }
 
-    console.log('orderNumber -- ', orderNumber);
-
     if (!orderNumber) return <p>Loading...</p>
     return (
-        <div>
+        <div style={{ textAlign: "center" }}>
             <h3>Thank you!</h3>
             <h5>Your order number is {orderNumber}</h5>
             <p>as per terms and conditions, nothing heppen now</p>
