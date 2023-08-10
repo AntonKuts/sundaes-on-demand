@@ -12,7 +12,9 @@ export default function OrderEntry({setOrderPhase}) {
             <Options optionType='scoops'/>
             <Options optionType='toppings'/>
             <h2> Grant total: {formatCurrency(totalNumber)} </h2>
-            <Button onClick={() => setOrderPhase("review")}>Order Sundae!</Button>
+            <Button onClick={() => setOrderPhase("review")} disabled={!totals.scoops}>
+                Order Sundae!
+            </Button>
         </div>
     )
 }
