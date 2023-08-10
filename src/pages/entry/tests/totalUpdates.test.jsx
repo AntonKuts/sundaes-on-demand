@@ -46,8 +46,8 @@ test("subtotal toppings starts at 0", async () => {
   const { unmount } = render(<Options optionType="toppings" />);
 
   // make sure total starts out $0.00
-  const scoopsSubtotal = screen.getByText("Toppings total: $", { exact: false });
-  expect(scoopsSubtotal).toHaveTextContent("0.00");
+  const toppingsSubtotal = screen.getByText("Toppings total: $", { exact: false });
+  expect(toppingsSubtotal).toHaveTextContent("0.00");
 
   // explicitly unmount component to trigger network call cancellation on cleanup
   // (necessary to avoid race condition if component unmounts when test function exits)

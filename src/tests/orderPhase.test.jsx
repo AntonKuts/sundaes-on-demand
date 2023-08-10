@@ -39,9 +39,9 @@ test('order phases for happy path', async  () => {
     expect(vanillaInfo).toHaveTextContent("3");
     const chocolateInfo = screen.getByText("2 Chocolate");
     expect(chocolateInfo).toBeInTheDocument();
-    const MAndMsInfo = screen.getByText("M&Ms1");
+    const MAndMsInfo = screen.getByText("M&Ms");
     expect(MAndMsInfo).toBeInTheDocument();
-    const cherriesInfo = screen.getByText("Cherries1");
+    const cherriesInfo = screen.getByText("Cherries");
     expect(cherriesInfo).toBeInTheDocument();
 
     // accept terms and conditions and click button to confirm order
