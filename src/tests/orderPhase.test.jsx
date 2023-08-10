@@ -50,13 +50,16 @@ test('order phases for happy path', async  () => {
     await user.click(termCheckbox);
     await user.click(confirmButton);
 
-    // loading 
+    // loading to be
     const loadingInfo = screen.getByText("Loading...");
     expect(loadingInfo).toBeInTheDocument();
 
     // conferm order number on confirmation page
     const orderNumber = await screen.findByText("Your order number is", { exact: false });
     expect(orderNumber).toHaveTextContent("1234567890");
+
+    // loading not to be
+    expect(loadingInfo).not.toBeInTheDocument()
 
     // click "new order" button on confirmation page
     const newOrderButton = screen.getByRole('button', {name: "Create new order"});
