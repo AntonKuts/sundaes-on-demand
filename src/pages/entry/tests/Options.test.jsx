@@ -52,4 +52,14 @@ test("not update total if value is invalid", async () => {
   await user.type(chocolateInput, "30");
 
   expect(scoopsSubtotal).toHaveTextContent("40.00");
+
+  await user.clear(chocolateInput);
+  await user.type(chocolateInput, "-1");
+
+  expect(scoopsSubtotal).toHaveTextContent("40.00");
+
+  await user.clear(chocolateInput);
+  await user.type(chocolateInput, "6.6");
+
+  expect(scoopsSubtotal).toHaveTextContent("40.00");
 });
