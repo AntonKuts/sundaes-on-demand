@@ -14,13 +14,8 @@ export default function ScoopOptions({ name, imagePath }) {
     const value = parseFloat(e.target.value);
     const isValidInput = value >= 0 
       && value < 21 && Math.floor(e.target.value) === value;
-    if (isValidInput) {
-      setIsValid(true);
-      updateItemCount(name, value,'scoops');
-    } 
-    else {
-      setIsValid(false);
-    }
+      setIsValid(isValidInput);
+      updateItemCount(name, isValidInput ? value : 0,'scoops');
   }
 
   return (
