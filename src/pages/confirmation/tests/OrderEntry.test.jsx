@@ -1,6 +1,5 @@
 import  { render, screen, waitFor } from "../../../test-utils/testing-library-utils";
 import { OrderConfirmation } from "../OrderConfirmation";
-import userEvent from "@testing-library/user-event";
 import { rest } from 'msw';
 import { server } from '../../../mocks/server';
 
