@@ -4,11 +4,9 @@ import ScoopOption from "../ScoopOption";
 
 test('not valid value in scoop option', async () => {
     const user = userEvent.setup();
-    render(<ScoopOption name="Vanilla" imagePath="/images/vanilla.png"/>);
+    render(<ScoopOption />);
 
-    const vanillaInput = await screen.findByRole("spinbutton", {
-        name: "Vanilla",
-    });
+    const vanillaInput = screen.getByRole("spinbutton");
     await user.clear(vanillaInput);
     await user.type(vanillaInput, "30");
 
