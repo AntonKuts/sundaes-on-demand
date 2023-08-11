@@ -11,8 +11,9 @@ export default function ScoopOptions({ name, imagePath }) {
   const [isValid, setIsValid] = useState(true);
   const { updateItemCount } = useOrderDetails();
   const handleChange=(e)=> {
-    const value = parseInt(e.target.value);
-    const isValidInput = value >= 0 && value < 21;
+    const value = parseFloat(e.target.value);
+    const isValidInput = value >= 0 
+      && value < 21 && Math.floor(e.target.value) === value;
     if (isValidInput) {
       setIsValid(true);
       updateItemCount(name, value,'scoops');
